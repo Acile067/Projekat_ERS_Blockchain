@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 using System.Security.Cryptography;
 
-namespace P1_Blockchain
+namespace P1_Blockchain.Blocks.impl
 {
-    public class Blocks
+    public class Blocksimpl : IBlocks
     {
         public int Id { get; set; }
         public string Data { get; set; }
@@ -16,16 +16,17 @@ namespace P1_Blockchain
         public int PreviousBlockId { get; set; }
 
         // Constructor
-        public Blocks(int id, string data, int previousBlockId)
+        public Blocksimpl(int id, string data, int previousBlockId)
         {
             Id = id;
             Data = data;
             PreviousBlockId = previousBlockId;
-            Hash = CalculateHash();
+            Hash = ((IBlocks)this).CalculateHash();
         }
 
         // Method to calculate SHA256 hash
-        private string CalculateHash()
+
+        string IBlocks.CalculateHash()
         {
             using (SHA256 sha256 = SHA256.Create())
             {
