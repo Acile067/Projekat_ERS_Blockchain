@@ -21,12 +21,11 @@ namespace P1_Blockchain.Blocks.impl
             Id = id;
             Data = data;
             PreviousBlockId = previousBlockId;
-            Hash = ((IBlocks)this).CalculateHash();
+            Hash = CalculateHash();
         }
-
+        
         // Method to calculate SHA256 hash
-
-        string IBlocks.CalculateHash()
+        public string CalculateHash()
         {
             using (SHA256 sha256 = SHA256.Create())
             {
