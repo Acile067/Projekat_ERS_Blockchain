@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 using System.Security.Cryptography;
 
-namespace P1_Blockchain
+namespace P1_Blockchain.Blocks
 {
-    public class Blocks
+    public class Blocks : IBlocks
     {
         public int Id { get; set; }
         public string Data { get; set; }
@@ -25,7 +25,7 @@ namespace P1_Blockchain
         }
 
         // Method to calculate SHA256 hash
-        private string CalculateHash()
+        public string CalculateHash()
         {
             using (SHA256 sha256 = SHA256.Create())
             {
