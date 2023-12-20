@@ -11,7 +11,7 @@ namespace P1_Blockchain
     {
         static void Main(string[] args)
         {
-            SmartContract smartContract = new SmartContract();
+            SmartContract.SmartContract smartContract = new SmartContract.SmartContract();
 
             Client.Client client1 = new Client.Client(1,"Aleksandar");
             Client.Client client2 = new Client.Client(2, "Mihailo");

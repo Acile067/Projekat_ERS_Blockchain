@@ -17,7 +17,7 @@ namespace P1_Blockchain.Client
             Data = data;
             CreationTime = DateTime.Now;
         }
-        public void SendDataToSmartContract(SmartContract smartContract)
+        public void SendDataToSmartContract(SmartContract.SmartContract smartContract)
         {
             smartContract.ReciveClientData(this);
         }
