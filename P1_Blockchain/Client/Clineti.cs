@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P1_Blockchain.Client.impl
+namespace P1_Blockchain.Client
 {
-    public class Clinetimpl : IClient
+    public class Clineti : IClient
     {
         public int ClientId { get; }
         public string Data { get; }
         public DateTime CreationTime { get; }
-        public Clinetimpl(int clientId, string data)
+        public Clineti(int clientId, string data)
         {
             ClientId = clientId;
             Data = data;
