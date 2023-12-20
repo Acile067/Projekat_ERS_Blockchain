@@ -1,4 +1,4 @@
-﻿using P1_Blockchain.Blocks.impl;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +11,18 @@ namespace P1_Blockchain
     {
         static void Main(string[] args)
         {
+            SmartContract smartContract = new SmartContract();
+
+            Client.Client client1 = new Client.Client(1,"Aleksandar");
+            Client.Client client2 = new Client.Client(2, "Mihailo");
+
+            client1.SendDataToSmartContract(smartContract);
+            client2.SendDataToSmartContract(smartContract);
+
+            foreach (Client.Client cli in smartContract.GetregistredClinets())
+            {
+                Console.WriteLine(cli);
+            }
         }
     }
 }

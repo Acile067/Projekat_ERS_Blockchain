@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace P1_Blockchain.Client
 {
-    public class Clineti : IClient
+    public class Client : IClient
     {
         public int ClientId { get; }
         public string Data { get; }
         public DateTime CreationTime { get; }
-        public Clineti(int clientId, string data)
+        public Client(int clientId, string data)
         {
             ClientId = clientId;
             Data = data;
@@ -19,8 +19,12 @@ namespace P1_Blockchain.Client
         }
         public void SendDataToSmartContract(SmartContract smartContract)
         {
-            //todo
-            throw new NotImplementedException();
+            smartContract.ReciveClientData(this);
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0,3} {1,-15} {2,15}", ClientId, Data, CreationTime);
         }
     }
 }
