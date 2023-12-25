@@ -11,17 +11,15 @@ namespace P1_Blockchain
     {
         static void Main(string[] args)
         {
-            SmartContract.SmartContract smartContract = new SmartContract.SmartContract();
+            ConnectionService conService = new ConnectionService();
+            SmartContract.SmartContract smartContract = new SmartContract.SmartContract(conService);
+            smartContract.ListenForClients();
 
-            Client.Client client1 = new Client.Client(1,"Aleksandar");
-            Client.Client client2 = new Client.Client(2, "Mihailo");
-
-            client1.SendDataToSmartContract(smartContract);
-            client2.SendDataToSmartContract(smartContract);
-
-            foreach (Client.Client cli in smartContract.GetregistredClinets())
+            while(true)
             {
-                Console.WriteLine(cli);
+                Console.WriteLine("Chose your class:\n\t1. Client\n\t2. Miner");
+                var clientHandler = new ClientUIHandler(new Client.Client(0,"dada"), conService);
+                clientHandler.HandleUI();
             }
         }
     }
