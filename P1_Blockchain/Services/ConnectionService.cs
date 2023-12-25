@@ -22,9 +22,10 @@ namespace P1_Blockchain{
             byte[] buffer = new byte[1_024];
 
             var stream = clientHandler.GetStream();
-            await stream.ReadAsync(buffer);
-            var dummyClient = "{\"ClientId\":2, \"Data\":\"gugu gaga\"}";
-            var client = JsonSerializer.Deserialize<Client>(JsonDocument.Parse(dummyClient));
+            int length = await stream.ReadAsync(buffer);
+            var clientJson = Encoding.UTF8.GetString(buffer, 0, length);
+
+            var client = JsonSerializer.Deserialize<Client>(JsonDocument.Parse(clientJson));
             return client;
         }
 
