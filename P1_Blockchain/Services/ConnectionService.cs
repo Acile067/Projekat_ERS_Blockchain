@@ -37,7 +37,7 @@ namespace P1_Blockchain{
                 await tcpClient.ConnectAsync(IPAddress.Loopback, 8080);
                 var stream = tcpClient.GetStream();
                 var clientJson = JsonSerializer.Serialize<Client>(client as Client);
-                await stream.WriteAsync(ASCIIEncoding.UTF8.GetBytes(clientJson));
+                await stream.WriteAsync(Encoding.UTF8.GetBytes(clientJson));
             } 
             catch(Exception e)
             {
