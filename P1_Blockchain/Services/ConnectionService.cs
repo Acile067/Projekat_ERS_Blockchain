@@ -23,7 +23,7 @@ namespace P1_Blockchain{
 
             var stream = clientHandler.GetStream();
             await stream.ReadAsync(buffer);
-            var dummyClient = "{\"id\":2, \"data\":\"gugu gaga\"}";
+            var dummyClient = "{\"ClientId\":2, \"Data\":\"gugu gaga\"}";
             var client = JsonSerializer.Deserialize<Client>(JsonDocument.Parse(dummyClient));
             return client;
         }
@@ -35,7 +35,7 @@ namespace P1_Blockchain{
                 var tcpClient = new TcpClient(AddressFamily.InterNetwork);
                 await tcpClient.ConnectAsync(IPAddress.Loopback, 8080);
                 var stream = tcpClient.GetStream();
-                var clientJson = JsonSerializer.Serialize<IClient>(client);
+                var clientJson = JsonSerializer.Serialize<Client>(client as Client);
                 await stream.WriteAsync(ASCIIEncoding.UTF8.GetBytes(clientJson));
             } 
             catch(Exception e)
