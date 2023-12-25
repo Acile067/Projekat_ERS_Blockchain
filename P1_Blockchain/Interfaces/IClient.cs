@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace P1_Blockchain
+﻿namespace P1_Blockchain
 {
     public interface IClient
     {
         void SendDataToSmartContract(ISmartContract smartContract);
-        void SetData(String data);
+        void SetData(string data);
     }
 }

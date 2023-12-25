@@ -1,13 +1,10 @@
 using System;
 using System.Net;
 using System.Net.Sockets;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using P1_Blockchain.Client;
-using P1_Blockchain.SmartContract;
+
 
 namespace P1_Blockchain{
     public class ConnectionService : IConnectionService
@@ -21,13 +18,13 @@ namespace P1_Blockchain{
         }
         public async Task<IClient> GetClient() 
         {   
-            TcpClient clientHandler = await this.listener.AcceptTcpClientAsync();
+            TcpClient clientHandler = await listener.AcceptTcpClientAsync();
             byte[] buffer = new byte[1_024];
 
             var stream = clientHandler.GetStream();
             await stream.ReadAsync(buffer);
             var dummyClient = "{\"id\":2, \"data\":\"gugu gaga\"}";
-            var client = JsonSerializer.Deserialize<Client.Client>(JsonDocument.Parse(dummyClient));
+            var client = JsonSerializer.Deserialize<Client>(JsonDocument.Parse(dummyClient));
             return client;
         }
 
