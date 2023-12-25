@@ -13,13 +13,9 @@ namespace P1_Blockchain
         {
             ConnectionService conService = new();
             SmartContract smartContract = new(conService);
-            smartContract.ListenForClients();
-
             while(true)
             {
-                Console.WriteLine("Chose your class:\n\t1. Client\n\t2. Miner");
-                var clientHandler = new ClientUIHandler(new Client(0,"dada"), conService);
-                clientHandler.HandleUI();
+                smartContract.ListenForClients();
             }
         }
     }
