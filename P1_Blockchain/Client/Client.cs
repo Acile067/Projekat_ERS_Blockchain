@@ -9,7 +9,7 @@ namespace P1_Blockchain.Client
     public class Client : IClient
     {
         public int ClientId { get; }
-        public string Data { get; }
+        public string Data { get; set; }
         public DateTime CreationTime { get; }
         public Client(int clientId, string data)
         {
@@ -25,6 +25,11 @@ namespace P1_Blockchain.Client
         public override string ToString()
         {
             return string.Format("{0,3} {1,-15} {2,15}", ClientId, Data, CreationTime);
+        }
+
+        public void SetData(string data)
+        {
+            this.Data = data;
         }
     }
 }
