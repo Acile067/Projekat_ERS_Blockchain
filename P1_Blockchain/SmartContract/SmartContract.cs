@@ -14,8 +14,8 @@ namespace P1_Blockchain
             {
                 Console.WriteLine("Listening for clients...");
                 var client = await _conService.GetClient();
-                this.ReciveClientData(client);
-                Console.WriteLine($"Captured client {0}", client);
+                ReciveClientData(client);
+                Console.WriteLine($"Captured client {client}");
             }
         }
 
