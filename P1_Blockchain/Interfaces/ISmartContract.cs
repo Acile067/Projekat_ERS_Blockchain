@@ -8,6 +8,6 @@ namespace P1_Blockchain.SmartContract
 {
     public interface ISmartContract
     {
-        void ReciveClientData(Client.Client client);
+        void ReciveClientData(Client.IClient client);
     }
 }
