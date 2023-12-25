@@ -1,12 +1,10 @@
 using System;
-using System.Threading;
-using P1_Blockchain.Client;
 
 namespace P1_Blockchain 
 {
     public class ClientUIHandler(IClient client, IConnectionService conService) : IUIHandler
     {
-        private Client.IClient _client = client;
+        private readonly IClient _client = client;
         private readonly IConnectionService _conService = conService;
         public void HandleUI()
         {

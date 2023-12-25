@@ -11,14 +11,14 @@ namespace P1_Blockchain
     {
         static void Main(string[] args)
         {
-            ConnectionService conService = new ConnectionService();
-            SmartContract.SmartContract smartContract = new SmartContract.SmartContract(conService);
+            ConnectionService conService = new();
+            SmartContract smartContract = new(conService);
             smartContract.ListenForClients();
 
             while(true)
             {
                 Console.WriteLine("Chose your class:\n\t1. Client\n\t2. Miner");
-                var clientHandler = new ClientUIHandler(new Client.Client(0,"dada"), conService);
+                var clientHandler = new ClientUIHandler(new Client(0,"dada"), conService);
                 clientHandler.HandleUI();
             }
         }

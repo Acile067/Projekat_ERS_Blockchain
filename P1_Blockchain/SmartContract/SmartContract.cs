@@ -1,13 +1,12 @@
-using P1_Blockchain.Client;
 using System;
 using System.Collections.Generic;
 
-namespace P1_Blockchain.SmartContract
+namespace P1_Blockchain
 {
     public class SmartContract(IConnectionService conService) : ISmartContract
     {
-        private List<Client.IClient> registredClients = [];
-        private List<Miner.IMiner> refisteredMiners = [];
+        private List<IClient> registredClients = [];
+        private List<IMiner> refisteredMiners = [];
         private IConnectionService _conService = conService;
 
         public async void ListenForClients(){
@@ -20,11 +19,11 @@ namespace P1_Blockchain.SmartContract
             }
         }
 
-        public void ReciveClientData(Client.IClient client)
+        public void ReciveClientData(IClient client)
         {
             registredClients.Add(client);
         }
-        public List<Client.IClient> GetregistredClinets()
+        public List<IClient> GetregistredClinets()
         {
             return registredClients;
         }

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P1_Blockchain.Client
+namespace P1_Blockchain
 {
     public interface IClient
     {
-        void SendDataToSmartContract(SmartContract.SmartContract smartContract);
+        void SendDataToSmartContract(ISmartContract smartContract);
         void SetData(String data);
     }
 }

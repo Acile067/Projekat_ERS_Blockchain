@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P1_Blockchain.Miner
+namespace P1_Blockchain
 {
     public interface IMiner
     {
-        void Register(SmartContract.SmartContract smartContract);
+        void Register(SmartContract smartContract);
     }
 }
