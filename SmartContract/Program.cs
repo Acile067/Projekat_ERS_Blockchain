@@ -9,13 +9,13 @@ namespace P1_Blockchain
 {
     public class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             ConnectionService conService = new();
             SmartContract smartContract = new(conService);
             while(true)
             {
-                smartContract.ListenForClients();
+                await smartContract.ListenForClients();
             }
         }
     }
