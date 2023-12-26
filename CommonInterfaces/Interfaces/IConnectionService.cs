@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace SmartContract
+namespace CommonInterfaces
 {
     public interface IConnectionService
     {

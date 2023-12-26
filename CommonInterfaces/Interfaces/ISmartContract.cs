@@ -1,4 +1,4 @@
-﻿namespace SmartContract
+﻿namespace CommonInterfaces
 {
     public interface ISmartContract
     {

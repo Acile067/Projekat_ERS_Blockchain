@@ -3,10 +3,10 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 
-namespace SmartContract
+
+namespace CommonInterfaces
 {
     public class ConnectionService : IConnectionService
     {   
@@ -27,7 +27,7 @@ namespace SmartContract
             var clientJson = Encoding.UTF8.GetString(buffer, 0, length);
 
             var client = JsonSerializer.Deserialize<Client>(JsonDocument.Parse(clientJson));
-            return client;
+            return client?? new Client(-1,"Invalid Client");
         }
 
         public async void SendClient(IClient client)

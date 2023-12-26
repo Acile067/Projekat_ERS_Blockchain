@@ -1,6 +1,7 @@
 using System;
+using CommonInterfaces;
 
-namespace SmartContract 
+namespace ClientNamespace 
 {
     public class ClientUIHandler(IClient client, IConnectionService conService) : IUIHandler
     {
@@ -8,12 +9,9 @@ namespace SmartContract
         private readonly IConnectionService _conService = conService;
         public void HandleUI()
         {
-            Console.Write("Name: ");
-            string name = Console.ReadLine();
-            Console.Write("Data: ");
-            string data = Console.ReadLine();
-            _client.SetData(data);
+            Console.WriteLine("Sending client data to the Smart Contract...");
             _conService.SendClient(_client);
+            Console.WriteLine("Client data sent to the Smart Contract!");
         }
     }
 }

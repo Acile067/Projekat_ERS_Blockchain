@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Security.Cryptography;
+using CommonInterfaces;
 
 namespace SmartContract
 {

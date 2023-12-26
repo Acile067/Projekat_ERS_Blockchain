@@ -1,9 +1,15 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartContract", "SmartContract\SmartContract.csproj", "{982B977D-6DAA-4520-9A57-90DD02E81329}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{47157A54-7646-4FA7-9042-94108E928591}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Miner", "Miner\Miner.csproj", "{6827AD4F-0DB6-4C58-97CA-4B88FD8CE407}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonInterfaces", "CommonInterfaces\CommonInterfaces.csproj", "{123761E7-16D7-445A-A331-68AE29324CCF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{982B977D-6DAA-4520-9A57-90DD02E81329}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{982B977D-6DAA-4520-9A57-90DD02E81329}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{982B977D-6DAA-4520-9A57-90DD02E81329}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47157A54-7646-4FA7-9042-94108E928591}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47157A54-7646-4FA7-9042-94108E928591}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47157A54-7646-4FA7-9042-94108E928591}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47157A54-7646-4FA7-9042-94108E928591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6827AD4F-0DB6-4C58-97CA-4B88FD8CE407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6827AD4F-0DB6-4C58-97CA-4B88FD8CE407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6827AD4F-0DB6-4C58-97CA-4B88FD8CE407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6827AD4F-0DB6-4C58-97CA-4B88FD8CE407}.Release|Any CPU.Build.0 = Release|Any CPU
+		{123761E7-16D7-445A-A331-68AE29324CCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{123761E7-16D7-445A-A331-68AE29324CCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{123761E7-16D7-445A-A331-68AE29324CCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{123761E7-16D7-445A-A331-68AE29324CCF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

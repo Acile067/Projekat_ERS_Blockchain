@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SmartContract
+namespace CommonInterfaces
 {
     public class Client(int clientId, string data) : IClient
     {
