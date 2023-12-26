@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Security.Cryptography;
 
-namespace P1_Blockchain
+namespace SmartContract
 {
     public class Block : IBlock
     {

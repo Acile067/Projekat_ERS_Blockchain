@@ -1,4 +1,4 @@
-﻿namespace P1_Blockchain
+﻿namespace SmartContract
 {
     public interface ISmartContract
     {

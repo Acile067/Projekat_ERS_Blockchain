@@ -1,6 +1,6 @@
 using System;
 
-namespace P1_Blockchain 
+namespace SmartContract 
 {
     public class ClientUIHandler(IClient client, IConnectionService conService) : IUIHandler
     {

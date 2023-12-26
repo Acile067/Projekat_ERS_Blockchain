@@ -6,7 +6,8 @@ using System.Text.Json;
 using System.Threading.Tasks;
 
 
-namespace P1_Blockchain{
+namespace SmartContract
+{
     public class ConnectionService : IConnectionService
     {   
         private readonly TcpListener listener;

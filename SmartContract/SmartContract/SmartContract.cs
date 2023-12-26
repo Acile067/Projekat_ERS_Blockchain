@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace P1_Blockchain
+namespace SmartContract
 {
     public class SmartContract(IConnectionService conService) : ISmartContract
     {

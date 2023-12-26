@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace P1_Blockchain
+namespace SmartContract
 {
     public interface IConnectionService
     {

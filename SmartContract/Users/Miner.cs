@@ -1,5 +1,5 @@
 
-namespace P1_Blockchain
+namespace SmartContract
 {
     public class Miner : IMiner
     {
