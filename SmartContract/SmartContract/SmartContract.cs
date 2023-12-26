@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace P1_Blockchain
 {
@@ -9,7 +10,7 @@ namespace P1_Blockchain
         private List<IMiner> refisteredMiners = [];
         private IConnectionService _conService = conService;
 
-        public async void ListenForClients(){
+        public async Task ListenForClients(){
             while(true)
             {
                 Console.WriteLine("Listening for clients...");
