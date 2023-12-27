@@ -41,27 +41,5 @@ namespace CommonInterfaces
             }
             return null;
         }
-
-        public Task<IUser?> Register()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async void SendClient(IClient client)
-        {   
-            try
-            {
-                var tcpClient = new TcpClient(AddressFamily.InterNetwork);
-                await tcpClient.ConnectAsync(IPAddress.Loopback, 8080);
-                var stream = tcpClient.GetStream();
-                var clientJson = JsonSerializer.Serialize<Client>(client as Client);
-                await stream.WriteAsync(Encoding.UTF8.GetBytes(clientJson));
-            } 
-            catch(Exception e)
-            {
-                Console.Error.WriteLine(e);
-            }
-            
-        }
     }
 }
