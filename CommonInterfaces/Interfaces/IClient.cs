@@ -2,6 +2,6 @@
 {
     public interface IClient : IUser
     {
-        void SendDataToSmartContract();
+        void SendData(DataMessage msg);
     }
 }
