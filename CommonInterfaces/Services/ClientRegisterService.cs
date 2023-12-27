@@ -5,13 +5,8 @@ using System.Text.Json;
 
 namespace CommonInterfaces
 {
-    public class ClientConnectionService : IConnectionService
+    public class ClientRegisterService : IRegisterable
     {
-        public Task<IUser?> GetUser(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<IUser?> Register()
         {
             var tcpClient = new TcpClient(AddressFamily.InterNetwork);
