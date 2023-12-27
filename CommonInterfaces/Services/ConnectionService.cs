@@ -37,6 +37,7 @@ namespace CommonInterfaces
                     //TODO: resi majnera
                     break;
                 case "DATA":
+                    await stream.WriteAsync(Encoding.UTF8.GetBytes("OK"));
                     length = await stream.ReadAsync(buffer);
                     string jsonData = Encoding.UTF8.GetString(buffer, 0, length);
                     var dataMessage = JsonSerializer.Deserialize<DataMessage>(jsonData);
@@ -53,12 +54,17 @@ namespace CommonInterfaces
             var tcpClient = new TcpClient(AddressFamily.InterNetwork);
             tcpClient.Connect(IPAddress.Loopback, 8080);
             var stream = tcpClient.GetStream();
-            var buffer = new byte[512];
+            var buffer = new byte[8];
 
             await stream.WriteAsync(Encoding.UTF8.GetBytes("DATA"));
+            int length = await stream.ReadAsync(buffer);
+            string response = Encoding.UTF8.GetString(buffer, 0, length);
             
-            var json = JsonSerializer.Serialize<DataMessage>(msg);
-            await stream.WriteAsync(Encoding.UTF8.GetBytes(json));
+            if(response == "OK")
+            {
+                var json = JsonSerializer.Serialize<DataMessage>(msg);
+                await stream.WriteAsync(Encoding.UTF8.GetBytes(json));
+            }
         }
     }
 }
