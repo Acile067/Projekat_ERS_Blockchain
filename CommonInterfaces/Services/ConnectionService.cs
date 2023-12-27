@@ -25,12 +25,12 @@ namespace CommonInterfaces
             int length = await stream.ReadAsync(buffer);
             if(length <= 0)
             {
-                return new Client(-1, "Invalid Client");
+                return new Client();
             }
             var clientJson = Encoding.UTF8.GetString(buffer, 0, length);
 
             var client = JsonSerializer.Deserialize<Client>(JsonDocument.Parse(clientJson));
-            return client?? new Client(-1,"Invalid Client");
+            return client?? new Client();
         }
 
         public async void SendClient(IClient client)
