@@ -1,26 +1,30 @@
 ﻿using System;
+using System.Text;
 
 namespace CommonInterfaces
 {
-    public class Client(int clientId, string data) : IClient
+    public class Client() : IClient
     {
-        public int ClientId { get; } = clientId;
-        public string Data { get; set; } = data;
+        public int ClientId { get; set; } = -1;
         public DateTime CreationTime { get; } = DateTime.Now;
 
-        public void SendDataToSmartContract(ISmartContract smartContract)
+        public void SendDataToSmartContract()
         {
-            smartContract.ReciveClientData(this);
+            
         }
 
         public override string ToString()
-        {
-            return string.Format("{0,3} {1,-15} {2,15}", ClientId, Data, CreationTime);
-        }
+        {   
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("================================================");
+            sb.AppendLine("|                  CLIENT                      |");
+            sb.AppendLine("|==============================================|");
+            sb.AppendLine($"|- Client Id: {ClientId}                       |");
+            sb.AppendLine($"|- Creation Time: {CreationTime}                |");
+            sb.AppendLine("================================================");
 
-        public void SetData(string data)
-        {
-            this.Data = data;
+
+            return sb.ToString();
         }
     }
 }
