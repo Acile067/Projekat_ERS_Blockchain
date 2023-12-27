@@ -16,10 +16,15 @@ namespace SmartContract
             {
                 Console.WriteLine("Listening...");
                 var user = await _conService.ReceieveMessage(userId);
-                if(user is Client) 
+                if (user is Client)
                 {
                     userId++;
                     Console.WriteLine($"Registered client \n{user as Client}");
+                }
+                else if (user is Miner)
+                {
+                    userId++;
+                    Console.WriteLine($"Registered miner \n{user as Miner}");
                 }
             }
                 
