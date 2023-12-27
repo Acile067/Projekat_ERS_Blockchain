@@ -1,6 +1,6 @@
 ﻿namespace CommonInterfaces
 {
-    public interface IClient
+    public interface IClient : IUser
     {
         void SendDataToSmartContract();
     }

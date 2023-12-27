@@ -4,7 +4,7 @@ namespace CommonInterfaces
 {
     public interface IConnectionService
     {
-        public Task<IClient> GetClient();
-        public void SendClient(IClient clent);
+        public Task<IUser?> GetUser(int id);
+        public Task<IUser?> Register();
     }
 }

@@ -7,25 +7,23 @@ namespace CommonInterfaces
 {
     public class ClientConnectionService : IConnectionService
     {
-        public Task<IClient> GetClient()
+        public Task<IUser?> GetUser(int id)
         {
             throw new NotImplementedException();
         }
 
-        public async void SendClient(IClient client)
+        public async Task<IUser?> Register()
         {
-            try
-            {
-                var tcpClient = new TcpClient(AddressFamily.InterNetwork);
-                tcpClient.Connect(IPAddress.Loopback, 8080);
-                var stream = tcpClient.GetStream();
-                var clientJson = JsonSerializer.Serialize<Client>(client as Client);
-                await stream.WriteAsync(Encoding.UTF8.GetBytes(clientJson));
-            } 
-            catch(Exception e)
-            {
-                Console.Error.WriteLine(e);
-            }
+            var tcpClient = new TcpClient(AddressFamily.InterNetwork);
+            tcpClient.Connect(IPAddress.Loopback, 8080);
+            var stream = tcpClient.GetStream();
+            var buffer = new byte[512];
+            
+            await stream.WriteAsync(Encoding.UTF8.GetBytes("CLIENT"));
+            int length = await stream.ReadAsync(buffer);
+            string clientJson = Encoding.UTF8.GetString(buffer,0,length);
+            var client = JsonSerializer.Deserialize<Client>(clientJson);
+            return client;
         }
     }
 }

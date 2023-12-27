@@ -7,27 +7,30 @@ namespace SmartContract
 {
     public class SmartContract(IConnectionService conService) : ISmartContract
     {
-        private List<IClient> registredClients = [];
-        private List<IMiner> refisteredMiners = [];
+        private List<IUser> registeredUsers = [];
+        private int userId = 0;
         private IConnectionService _conService = conService;
 
-        public async Task ListenForClients(){
+        public async Task ListenForUsers(){
             while(true)
             {
-                Console.WriteLine("Listening for clients...");
-                var client = await _conService.GetClient();
-                ReciveClientData(client);
-                Console.WriteLine($"Captured client {client}");
+                Console.WriteLine("Listening...");
+                var user = await _conService.GetUser(userId++);
+                if(user is Client) 
+                {
+                    Console.WriteLine($"Registered client \n{user as Client}");
+                }
             }
+                
         }
 
-        public void ReciveClientData(IClient client)
+        public void RegisterUser(IUser user)
         {
-            registredClients.Add(client);
+            registeredUsers.Add(user);
         }
-        public List<IClient> GetregistredClinets()
+        public List<IUser> GetRegistredUsers()
         {
-            return registredClients;
+            return registeredUsers;
         }
     }
 }

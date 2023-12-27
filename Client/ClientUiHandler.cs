@@ -10,7 +10,7 @@ namespace ClientNamespace
         public void HandleUI()
         {
             Console.WriteLine("Sending client data to the Smart Contract...");
-            _conService.SendClient(_client);
+            //_conService.SendClient(_client);
             Console.WriteLine("Client data sent to the Smart Contract!");
         }
     }

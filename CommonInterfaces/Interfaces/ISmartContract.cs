@@ -2,6 +2,6 @@
 {
     public interface ISmartContract
     {
-        void ReciveClientData(IClient client);
+        void RegisterUser(IUser user);
     }
 }

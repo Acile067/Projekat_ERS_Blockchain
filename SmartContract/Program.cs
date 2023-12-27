@@ -12,7 +12,7 @@ namespace SmartContract
             SmartContract smartContract = new(conService);
             while(true)
             {
-                await smartContract.ListenForClients();
+                await smartContract.ListenForUsers();
             }
         }
     }

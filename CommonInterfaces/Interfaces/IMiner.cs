@@ -1,6 +1,6 @@
 ﻿namespace CommonInterfaces
 {
-    public interface IMiner
+    public interface IMiner : IUser
     {
         void Register(ISmartContract smartContract);
     }

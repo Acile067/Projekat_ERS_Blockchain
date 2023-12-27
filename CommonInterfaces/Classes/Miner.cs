@@ -10,5 +10,10 @@ namespace CommonInterfaces
         {
             throw new System.NotImplementedException();
         }
+
+        public Task Register()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
