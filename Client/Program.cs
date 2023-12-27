@@ -10,7 +10,6 @@ internal class Program
         
         var client = new Client(); //TODO: proveriti da li je data null
         await client.Register();
-        var conService = new ClientConnectionService();
         Console.WriteLine(client);
         //var uiHandler = new ClientUIHandler(client, conService);
         //uiHandler.HandleUI();

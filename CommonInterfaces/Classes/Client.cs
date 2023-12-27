@@ -10,8 +10,8 @@ namespace CommonInterfaces
 
         public async Task Register()
         {
-            var conService = new ClientConnectionService();
-            Client client = (Client)await conService.Register();
+            var regService = new ClientRegisterService();
+            Client client = (Client)await regService.Register();
             this.ClientId = client!.ClientId;
         }
 
