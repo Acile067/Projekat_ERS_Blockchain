@@ -24,9 +24,9 @@ namespace CommonInterfaces
 
             var stream = clientHandler.GetStream();
             int length = await stream.ReadAsync(buffer);
-            var userType = Encoding.UTF8.GetString(buffer, 0, length);
+            var msgType = Encoding.UTF8.GetString(buffer, 0, length);
 
-            if(userType == "CLIENT")
+            if(msgType == "CLIENT")
             {
                 var newClient = new Client { ClientId = id };
                 var jsonClient = JsonSerializer.Serialize<Client>(newClient);
@@ -34,7 +34,7 @@ namespace CommonInterfaces
                 return newClient;
             }
 
-            else if(userType == "MINER")
+            else if(msgType == "MINER")
             {
                 var newMiner = new Miner();
                 //TODO: resi majnera
