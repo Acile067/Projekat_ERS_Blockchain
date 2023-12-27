@@ -15,9 +15,10 @@ namespace SmartContract
             while(true)
             {
                 Console.WriteLine("Listening...");
-                var user = await _conService.GetUser(userId++);
+                var user = await _conService.ReceieveMessage(userId);
                 if(user is Client) 
                 {
+                    userId++;
                     Console.WriteLine($"Registered client \n{user as Client}");
                 }
             }
