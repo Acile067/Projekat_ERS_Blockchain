@@ -1,4 +1,3 @@
-using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -24,6 +23,10 @@ namespace CommonInterfaces
 
             var stream = clientHandler.GetStream();
             int length = await stream.ReadAsync(buffer);
+            if(length <= 0)
+            {
+                return new Client(-1, "Invalid Client");
+            }
             var clientJson = Encoding.UTF8.GetString(buffer, 0, length);
 
             var client = JsonSerializer.Deserialize<Client>(JsonDocument.Parse(clientJson));

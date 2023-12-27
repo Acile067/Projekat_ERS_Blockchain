@@ -16,7 +16,7 @@ internal class Program
             data = Console.ReadLine();
         }
         var client = new Client(0, data!); //TODO: proveriti da li je data null
-        var conService = new ConnectionService();
+        var conService = new ClientConnectionService();
         var uiHandler = new ClientUIHandler(client, conService);
         uiHandler.HandleUI();
     }
