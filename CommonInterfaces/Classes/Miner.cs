@@ -6,9 +6,9 @@ namespace CommonInterfaces
         public int Id { get; set; }
         public double BTC { get; set; }
 
-        public void Register(ISmartContract smartContract)
+        public int GetId()
         {
-            throw new System.NotImplementedException();
+            return Id;
         }
 
         public Task Register()
