@@ -3,15 +3,18 @@ using CommonInterfaces;
 
 namespace ClientNamespace 
 {
-    public class ClientUIHandler(IClient client, IConnectionService conService) : IUIHandler
+    public class ClientUIHandler(IClient client) : IUIHandler
     {
         private readonly IClient _client = client;
-        private readonly IConnectionService _conService = conService;
         public void HandleUI()
         {
-            Console.WriteLine("Sending client data to the Smart Contract...");
-            //_conService.SendClient(_client);
-            Console.WriteLine("Client data sent to the Smart Contract!");
+            while(true)
+            {
+                Console.WriteLine("Enter data:");
+                string data = Console.ReadLine();
+                ConnectionService.SendMessage(new DataMessage { UserId = _client.GetId(), Data = data, DateTime = DateTime.Now});
+                Console.WriteLine("Data sent to the Smart Contract!\n");
+            }
         }
     }
 }
