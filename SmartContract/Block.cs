@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System.Text;
 using System.Security.Cryptography;
+using CommonInterfaces;
 
-namespace P1_Blockchain.Blocks
+namespace SmartContract
 {
-    public class Blocks : IBlocks
+    public class Block : IBlock
     {
         public int Id { get; set; }
         public string Data { get; set; }
@@ -16,7 +12,7 @@ namespace P1_Blockchain.Blocks
         public int PreviousBlockId { get; set; }
 
         // Constructor
-        public Blocks(int id, string data, int previousBlockId)
+        public Block(int id, string data, int previousBlockId)
         {
             Id = id;
             Data = data;
