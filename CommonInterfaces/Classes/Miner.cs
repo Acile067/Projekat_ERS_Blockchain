@@ -35,5 +35,10 @@ namespace CommonInterfaces
 
             return sb.ToString();
         }
+
+        public async Task ListenForMessages()
+        {
+
+        }
     }
 }

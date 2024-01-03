@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommonInterfaces;
+using CommonInterfaces.Services;
 
 namespace MinerNamespace
 {
@@ -11,6 +12,12 @@ namespace MinerNamespace
     {
         public void HandleUI()
         {
+            
+
+
+
+
+
             Console.WriteLine("Press any to exit...");
             Console.Read();
         }
