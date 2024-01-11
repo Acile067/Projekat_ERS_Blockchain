@@ -33,9 +33,11 @@ namespace CommonInterfaces
                     await stream.WriteAsync(Encoding.UTF8.GetBytes(jsonClient));
                     return newClient;
                 case "MINER":
-                    var newMiner = new Miner();
-                    //TODO: resi majnera
-                    break;
+                    var newMiner = new Miner { MinerId = id };
+                    var jsonMiner = JsonSerializer.Serialize<Miner>(newMiner);
+                    await stream.WriteAsync(Encoding.UTF8.GetBytes(jsonMiner));
+                    return newMiner;
+                    
                 case "DATA":
                     await stream.WriteAsync(Encoding.UTF8.GetBytes("OK"));
                     length = await stream.ReadAsync(buffer);
