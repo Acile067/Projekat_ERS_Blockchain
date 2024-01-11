@@ -1,6 +1,3 @@
 # P1_Blockchain
-OPIS IIDE OVDE..
-# How to build
-...
-# Testing
-...
+Projekat iz ERS
+
