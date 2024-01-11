@@ -15,19 +15,9 @@ namespace MinerNamespace
         {
             while(true)
             {   
-                var cts = new CancellationTokenSource();
-                var token = cts.Token;
-                var minerListTask = _receiver.Receive(token);
-                List<Miner>? minerList;
-                await Task.Delay(TimeSpan.FromSeconds(1));
-                if(minerListTask.IsCompleted)
-                {
-                    minerList = minerListTask.Result;
-                }
-                else
-                {
-                    cts.Cancel();
-                }
+                var minerList = await _receiver.Receive();
+                Console.WriteLine($"Received {minerList.Count} miners");
+                await Task.Delay(TimeSpan.FromSeconds(3));
             }
         }
     }

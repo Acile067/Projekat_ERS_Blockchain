@@ -2,6 +2,6 @@ namespace CommonInterfaces
 {
     public interface IListReceiver 
     {
-        Task<List<Miner>?> Receive(CancellationToken token);
+        Task<List<Miner>?> Receive();
     }
 }
