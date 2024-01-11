@@ -5,6 +5,6 @@ namespace CommonInterfaces
     public interface IConnectionService
     {
         public Task<IUser?> ReceieveMessage(int id);
-        public Task SendToMiners(string data);
+        public Task SendMinerList(string data);
     }
 }

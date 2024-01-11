@@ -5,7 +5,6 @@ using System.Text;
 using System.Text.Json;
 
 
-
 namespace CommonInterfaces
 {
     public class ConnectionService : IConnectionService
@@ -44,6 +43,7 @@ namespace CommonInterfaces
                     string jsonData = Encoding.UTF8.GetString(buffer, 0, length);
                     var dataMessage = JsonSerializer.Deserialize<DataMessage>(jsonData);
                     Console.WriteLine($"Got a message: {dataMessage!.Data}");
+                    await SendClientData(dataMessage);
                     break;
                 default:
                     break;
@@ -51,10 +51,37 @@ namespace CommonInterfaces
             return null;
         }
 
-        public async Task SendToMiners(string data){
+        public async Task SendMinerList(string data){
             var tcpClient = await listener.AcceptTcpClientAsync();
             var stream = tcpClient.GetStream();
-            stream.Write(Encoding.UTF8.GetBytes(data));
+            var buffer = new byte[64];
+            await stream.WriteAsync(Encoding.UTF8.GetBytes("MINER"));
+    
+            int length = await stream.ReadAsync(buffer);
+            string response = Encoding.UTF8.GetString(buffer, 0, length);
+            
+            if(response == "OK")
+            {
+                stream.Write(Encoding.UTF8.GetBytes(data));
+            }
+            
+            tcpClient.Close();
+        }
+
+        public async Task SendClientData(DataMessage msg){
+             var tcpClient = await listener.AcceptTcpClientAsync();
+            var stream = tcpClient.GetStream();
+            var buffer = new byte[1_024];
+            await stream.WriteAsync(Encoding.UTF8.GetBytes("DATA"));
+    
+            int length = await stream.ReadAsync(buffer);
+            string response = Encoding.UTF8.GetString(buffer, 0, length);
+            
+            if(response == "OK")
+            {
+                stream.Write(Encoding.UTF8.GetBytes(JsonSerializer.Serialize<DataMessage>(msg)));
+            }
+            
             tcpClient.Close();
         }
 

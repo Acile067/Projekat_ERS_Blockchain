@@ -11,6 +11,6 @@ internal class Program
         Console.WriteLine(client);
         
         var uiHandler = new ClientUIHandler(client);
-        uiHandler.HandleUI();
+        await uiHandler.HandleUI();
     }
 }

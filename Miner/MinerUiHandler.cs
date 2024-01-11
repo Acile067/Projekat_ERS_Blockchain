@@ -13,8 +13,22 @@ namespace MinerNamespace
         public IListReceiver _receiver = receiver;
         public async Task HandleUI()
         {
-            var minerList = await _receiver.Receive();
-            minerList.ForEach(Console.WriteLine);
+            while(true)
+            {   
+                var cts = new CancellationTokenSource();
+                var token = cts.Token;
+                var minerListTask = _receiver.Receive(token);
+                List<Miner>? minerList;
+                await Task.Delay(TimeSpan.FromSeconds(1));
+                if(minerListTask.IsCompleted)
+                {
+                    minerList = minerListTask.Result;
+                }
+                else
+                {
+                    cts.Cancel();
+                }
+            }
         }
     }
 }
