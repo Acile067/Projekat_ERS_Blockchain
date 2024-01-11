@@ -34,7 +34,7 @@ namespace SmartContract
                     }
                     var minersJson = JsonSerializer.Serialize<List<Miner>>(miners);
                     for(int i = 0; i < miners.Count(); i++){
-                        _conService.SendToMiners(minersJson);
+                        await _conService.SendToMiners(minersJson);
                     }
                 }
             }

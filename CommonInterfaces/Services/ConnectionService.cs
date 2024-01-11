@@ -51,7 +51,7 @@ namespace CommonInterfaces
             return null;
         }
 
-        public async void SendToMiners(string data){
+        public async Task SendToMiners(string data){
             var tcpClient = await listener.AcceptTcpClientAsync();
             var stream = tcpClient.GetStream();
             stream.Write(Encoding.UTF8.GetBytes(data));
