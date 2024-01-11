@@ -12,6 +12,6 @@ internal class Program
         Console.WriteLine(miner);
 
         var uiHandler = new MinerUiHandler(miner);
-        uiHandler.HandleUI();
+        await uiHandler.HandleUI();
     }
 }

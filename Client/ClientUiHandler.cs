@@ -6,7 +6,7 @@ namespace ClientNamespace
     public class ClientUIHandler(IClient client) : IUIHandler
     {
         private readonly IClient _client = client;
-        public void HandleUI()
+        public Task HandleUI()
         {
             while(true)
             {

@@ -2,6 +2,6 @@ namespace CommonInterfaces
 {
     public interface IUIHandler 
     {
-        void HandleUI();
+        Task HandleUI();
     }
 }

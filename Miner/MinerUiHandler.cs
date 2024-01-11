@@ -9,10 +9,10 @@ namespace MinerNamespace
 {
     internal class MinerUiHandler(IMiner miner) : IUIHandler
     {
-        public void HandleUI()
+        public async Task HandleUI()
         {
-            Console.WriteLine("Press any to exit...");
-            Console.Read();
+            var minerList = await ConnectionService.MinerRecieve();
+            minerList.ForEach(Console.WriteLine);
         }
     }
 }

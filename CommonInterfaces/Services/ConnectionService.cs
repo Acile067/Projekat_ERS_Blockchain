@@ -51,6 +51,24 @@ namespace CommonInterfaces
             return null;
         }
 
+        public async void SendToMiners(string data){
+            var tcpClient = await listener.AcceptTcpClientAsync();
+            var stream = tcpClient.GetStream();
+            stream.Write(Encoding.UTF8.GetBytes(data));
+            tcpClient.Close();
+        }
+
+        public async static Task<List<Miner>> MinerRecieve(){
+            var tcpClient = new TcpClient(AddressFamily.InterNetwork);
+            tcpClient.Connect(address: IPAddress.Loopback, port: 8080);
+            var stream = tcpClient.GetStream();
+            var buffer = new byte[10_240];
+            var length = await stream.ReadAsync(buffer);
+            string response = Encoding.UTF8.GetString(buffer, 0, length);
+            List<Miner> minerList = JsonSerializer.Deserialize<List<Miner>>(response);
+            return minerList;
+        }
+
         public async static void SendMessage(DataMessage msg)
         {
             var tcpClient = new TcpClient(AddressFamily.InterNetwork);
