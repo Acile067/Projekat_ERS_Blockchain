@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Text.Json;
 
 namespace CommonInterfaces
 {
@@ -21,17 +22,8 @@ namespace CommonInterfaces
         }
 
         public override string ToString()
-        {   
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("================================================");
-            sb.AppendLine("|                  CLIENT                      |");
-            sb.AppendLine("|==============================================|");
-            sb.AppendLine($"|- Client Id: {ClientId}");
-            sb.AppendLine($"|- Creation Time: {CreationTime}");
-            sb.AppendLine("================================================");
-
-
-            return sb.ToString();
+        {
+            return JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
         }
     }
 }

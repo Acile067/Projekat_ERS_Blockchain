@@ -1,6 +1,7 @@
 
 using CommonInterfaces.Services;
 using System.Text;
+using System.Text.Json;
 
 namespace CommonInterfaces
 {
@@ -8,6 +9,12 @@ namespace CommonInterfaces
     {
         public int MinerId { get; set; } = -1;
         public double BTC { get; set; }
+
+        public List<Block> blockchain = [];
+
+        public int currentBlockId = 0;
+
+        public int previousBlockId = -1;
 
         public int GetId()
         {
@@ -17,41 +24,33 @@ namespace CommonInterfaces
         public async Task Register()
         {
             var regService = new MinerRegisterService();
-            Miner miner = (Miner)await regService.Register();
+            Miner? miner = (Miner?)await regService.Register();
             this.MinerId = miner!.MinerId;      
             this.BTC = 0;
         }
 
-        public Block CreateBlock(int idb,string data, int previousBlockId)
+        public Block CreateBlock(DataMessage data)
         {
-            int id = idb; 
-            Block block = new Block(id, data, previousBlockId);
-            string hash = block.Hash;
+            Block block = new Block(currentBlockId++, data, previousBlockId++);
 
-            while (!hash.StartsWith("000"))
+            while (!block.Hash.StartsWith("000"))
             {
-                block.Data += "NONCE"; 
-                hash = block.CalculateHash();
+                block.nonce++; 
+                block.CalculateHash();
             }
-
-            block.Hash = hash;
-            Console.WriteLine($"Created block with hash: {hash}");
-
+            BTC += 0.1;
+            
             return block;
         }
 
         public override string? ToString()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("================================================");
-            sb.AppendLine("|                  MINER                       |");
-            sb.AppendLine("|==============================================|");
-            sb.AppendLine($"|- Miner Id: {MinerId}");
-            sb.AppendLine($"|- BTC: {BTC}");
-            sb.AppendLine("================================================");
+            return JsonSerializer.Serialize(this, new JsonSerializerOptions{ WriteIndented = true} );
+        }
 
-
-            return sb.ToString();
+        public List<Block> GetBlockChain()
+        {
+            return blockchain;
         }
     }
 }
