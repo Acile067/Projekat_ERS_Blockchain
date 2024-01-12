@@ -19,11 +19,58 @@ namespace CommonInterfaces
         public async Task ReceieveMessage(int id, List<IUser> users) 
         {   
             TcpClient clientHandler = await listener.AcceptTcpClientAsync();
-            _ = Task.Run(async () =>
-            {
-                byte[] buffer = new byte[512];
+            _ = Task.Run(() => HandleClient(clientHandler, users, id) );
+            
+        }
 
-                var stream = clientHandler.GetStream();
+        public void PushMessages(DataMessage msg, List<IUser> users) 
+        {
+            var miners = users.OfType<Miner>().ToList();
+            miners.ForEach((m) =>
+            {
+                msgBuffer.Push(msg);
+            });
+        }
+
+        public void SendMinerList(List<IUser> users)
+        {
+            var miners = users.OfType<Miner>().ToList();
+            var jsonMiners = JsonSerializer.Serialize(miners, new JsonSerializerOptions { WriteIndented = true });
+            var msg = new DataMessage { Data = jsonMiners, DateTime = DateTime.Now, UserId = -1, Type = MsgType.MINER_LIST };
+            miners.ForEach((m) =>
+            {
+                msgBuffer.Push(msg);
+            });
+        }
+
+        public async Task SendBackData(DataMessage msg, NetworkStream stream){
+            var jsonMsg = JsonSerializer.Serialize(msg);
+            await stream.WriteAsync(Encoding.UTF8.GetBytes(jsonMsg));
+        }
+
+        public async static void SendMessage(DataMessage msg)
+        {
+            var tcpClient = new TcpClient(AddressFamily.InterNetwork);
+            tcpClient.Connect(IPAddress.Loopback, 8080);
+            var stream = tcpClient.GetStream();
+            var buffer = new byte[8];
+
+            await stream.WriteAsync(Encoding.UTF8.GetBytes("DATA"));
+            int length = await stream.ReadAsync(buffer);
+            string response = Encoding.UTF8.GetString(buffer, 0, length);
+            
+            if(response == "OK")
+            {
+                var json = JsonSerializer.Serialize(msg);
+                await stream.WriteAsync(Encoding.UTF8.GetBytes(json));
+            }
+        }
+
+        private async void HandleClient(TcpClient client, List<IUser> users, int id)
+        {
+            byte[] buffer = new byte[512];
+
+                var stream = client.GetStream();
                 int length = await stream.ReadAsync(buffer);
                 var msgType = Encoding.UTF8.GetString(buffer, 0, length);
                 switch (msgType)
@@ -76,51 +123,6 @@ namespace CommonInterfaces
                     default:
                         break;
                 }
-            });
-            
-        }
-
-        public void PushMessages(DataMessage msg, List<IUser> users) 
-        {
-            var miners = users.OfType<Miner>().ToList();
-            miners.ForEach((m) =>
-            {
-                msgBuffer.Push(msg);
-            });
-        }
-
-        public void SendMinerList(List<IUser> users)
-        {
-            var miners = users.OfType<Miner>().ToList();
-            var jsonMiners = JsonSerializer.Serialize(miners, new JsonSerializerOptions { WriteIndented = true });
-            var msg = new DataMessage { Data = jsonMiners, DateTime = DateTime.Now, UserId = -1, Type = MsgType.MINER_LIST };
-            miners.ForEach((m) =>
-            {
-                msgBuffer.Push(msg);
-            });
-        }
-
-        public async Task SendBackData(DataMessage msg,NetworkStream stream){
-            var jsonMsg = JsonSerializer.Serialize(msg);
-            await stream.WriteAsync(Encoding.UTF8.GetBytes(jsonMsg));
-        }
-
-        public async static void SendMessage(DataMessage msg)
-        {
-            var tcpClient = new TcpClient(AddressFamily.InterNetwork);
-            tcpClient.Connect(IPAddress.Loopback, 8080);
-            var stream = tcpClient.GetStream();
-            var buffer = new byte[8];
-
-            await stream.WriteAsync(Encoding.UTF8.GetBytes("DATA"));
-            int length = await stream.ReadAsync(buffer);
-            string response = Encoding.UTF8.GetString(buffer, 0, length);
-            
-            if(response == "OK")
-            {
-                var json = JsonSerializer.Serialize(msg);
-                await stream.WriteAsync(Encoding.UTF8.GetBytes(json));
-            }
         }
     }
 }
