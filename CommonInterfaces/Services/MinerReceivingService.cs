@@ -7,38 +7,29 @@ using System.Text.Json;
 
 namespace CommonInterfaces
 {
-    public class MinerReceivingService : IListReceiver
+    public class MinerReceivingService : IReceiver
     {
-        public async Task<List<Miner>?> Receive()
+        public async Task<DataMessage?> Receive()
         {
             var tcpClient = new TcpClient(AddressFamily.InterNetwork);
             tcpClient.Connect(address: IPAddress.Loopback, port: 8080);
+            var buffer = new byte[1024];
             var stream = tcpClient.GetStream();
-            var buffer = new byte[10_240];
-            var length = await stream.ReadAsync(buffer);
-            string response = Encoding.UTF8.GetString(buffer, 0, length);
-            switch(response)
-            {
-                case "MINER":
-                    await stream.WriteAsync(Encoding.UTF8.GetBytes("OK"));
-                    length = await stream.ReadAsync(buffer);
-                    response = Encoding.UTF8.GetString(buffer, 0, length);
-                    List<Miner> minerList = JsonSerializer.Deserialize<List<Miner>>(response);
-                    Console.WriteLine($"Received {(minerList != null ? minerList.Count : "no")} miners");
-                    return minerList;
-                
-                case "DATA":
-                    await stream.WriteAsync(Encoding.UTF8.GetBytes("OK"));
-                    length = await stream.ReadAsync(buffer);
-                    response = Encoding.UTF8.GetString(buffer, 0, length);
-                    DataMessage msg = JsonSerializer.Deserialize<DataMessage>(response);
-                    Console.WriteLine(msg.Data);
-                    break;
-                default:
-                    break;
-            }
-            return null;
+            await stream.WriteAsync(Encoding.UTF8.GetBytes("RECEIVE"));
             
+            var length = await stream.ReadAsync(buffer);
+            if(length > 1)
+            {
+                string response = Encoding.UTF8.GetString(buffer, 0, length);
+
+                var msg = JsonSerializer.Deserialize<DataMessage>(response);
+                
+                return msg!;
+            }
+            else 
+            {
+                return null;
+            }
         }
     }
 }
