@@ -1,4 +1,5 @@
 ﻿using CommonInterfaces;
+using CommonInterfaces.Services;
 using MinerNamespace;
 using System;
 
@@ -9,7 +10,8 @@ internal class Program
         var miner = new Miner(); 
         var receiver = new MinerReceivingService();
         var sender = new MinerSendingService();
-        await miner.Register();
+        var regService = new MinerRegisterService();
+        await miner.Register(regService);
         Console.WriteLine("Miner registered successfuly!");
         Console.WriteLine(miner);
 

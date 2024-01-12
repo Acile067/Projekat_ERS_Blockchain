@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Client\Client.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CommonInterfaces\CommonInterfaces.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -19,7 +19,6 @@ namespace SmartContract
             {
                 await _conService.ReceieveMessage(userId++, registeredUsers);
             }
-                
         }
 
         public void RegisterUser(IUser user)
