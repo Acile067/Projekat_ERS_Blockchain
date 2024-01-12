@@ -31,7 +31,7 @@ namespace CommonInterfaces
 
         public Block CreateBlock(DataMessage data)
         {
-            Block block = new Block(currentBlockId++, data, previousBlockId++);
+            Block block = new Block(currentBlockId++, data, previousBlockId++, MinerId);
 
             while (!block.Hash.StartsWith("000"))
             {

@@ -117,6 +117,7 @@ namespace CommonInterfaces
                         string jsonBlock = Encoding.UTF8.GetString(buffer, 0, length);
                         var block = JsonSerializer.Deserialize<Block>(jsonBlock);
                         Console.WriteLine($"Received a new block with hash: {block!.Hash[..16]}\n");
+                        (users.FirstOrDefault(x => x.GetId() == block.MinerId) as Miner)!.BTC += 0.1;
                         var data = new DataMessage { Data = jsonBlock, DateTime = DateTime.Now, Type = MsgType.BLOCK };
                         PushMessages(data, users);
                         break;

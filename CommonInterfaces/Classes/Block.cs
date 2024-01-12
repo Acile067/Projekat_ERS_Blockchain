@@ -7,15 +7,17 @@ namespace CommonInterfaces
 {
     public class Block : IBlock
     {
+        public int MinerId { get; set; }
         public int Id { get; set; }
         public DataMessage Data { get; set; }
         public string Hash { get; set; }
         public int PreviousBlockId { get; set; }
         public UInt128 nonce = 0; 
         
-        public Block(int id, DataMessage data, int previousBlockId)
+        public Block(int id, DataMessage data, int previousBlockId, int minerId)
         {
             Id = id;
+            MinerId = minerId;
             Data = data;
             PreviousBlockId = previousBlockId;
             Hash = "";
