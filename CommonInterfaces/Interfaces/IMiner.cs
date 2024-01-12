@@ -2,6 +2,7 @@
 {
     public interface IMiner : IUser
     {
-        public Block CreateBlock(int idb, string data, int previousBlockId);
+        public Block CreateBlock(DataMessage data);
+        public List<Block> GetBlockChain();
     }
 }
