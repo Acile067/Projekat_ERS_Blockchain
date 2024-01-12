@@ -27,7 +27,7 @@ namespace Tests
         {
             var miner = new Miner();
             var block = miner.CreateBlock(new DataMessage { Data = "Test"});
-            Assert.That(block.Data.Data.StartsWith("000"));
+            Assert.That(block.Hash.StartsWith("000"));
         }
 
         public void Miner_GetsAwardedBTC()

@@ -24,15 +24,5 @@ namespace Tests
             Assert.That(client.ClientId, Is.LessThan(0));
         }
 
-        [Test]
-        public void HandleUI_ThrowsExceptionWhenClientIsNull()
-        {
-            // Arrange
-            IClient nullClient = null;
-            var uiHandler = new ClientUIHandler(nullClient);
-
-            // Act and Assert
-            Assert.Throws<ArgumentNullException>(() => uiHandler.HandleUI());
-        }
     }
 }

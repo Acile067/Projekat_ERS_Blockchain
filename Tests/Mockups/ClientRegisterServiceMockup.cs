@@ -7,8 +7,10 @@ namespace Tests
         public async Task<IUser?> Register()
         {
             await Task.Delay(100);
-            var client = new Client();
-            client.ClientId = 10;
+            var client = new Client
+            {
+                ClientId = 10
+            };
             return client;
         }
     }

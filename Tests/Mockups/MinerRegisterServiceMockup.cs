@@ -7,8 +7,10 @@ namespace Tests
         public async Task<IUser?> Register()
         {
             await Task.Delay(100);
-            var miner = new Miner();
-            miner.MinerId = 10;
+            var miner = new Miner
+            {
+                MinerId = 10
+            };
             return miner;
         }
     }
