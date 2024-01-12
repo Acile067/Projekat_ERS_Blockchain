@@ -14,9 +14,8 @@ namespace CommonInterfaces
             return ClientId;
         }
 
-        public async Task Register()
+        public async Task Register(IRegisterable regService)
         {
-            var regService = new ClientRegisterService();
             Client client = (Client)await regService.Register();
             this.ClientId = client!.ClientId;
         }

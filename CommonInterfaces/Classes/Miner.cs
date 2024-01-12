@@ -21,9 +21,9 @@ namespace CommonInterfaces
             return MinerId;
         }
 
-        public async Task Register()
+        public async Task Register(IRegisterable regService)
         {
-            var regService = new MinerRegisterService();
+            //var regService = new MinerRegisterService();
             Miner? miner = (Miner?)await regService.Register();
             this.MinerId = miner!.MinerId;      
             this.BTC = 0;
