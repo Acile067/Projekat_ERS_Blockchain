@@ -14,33 +14,10 @@ namespace SmartContract
         private IConnectionService _conService = conService;
 
         public async Task ListenForUsers(){
+            Console.WriteLine("Listening...");
             while(true)
             {
-                Console.WriteLine("Listening...");
-                var user = await _conService.ReceieveMessage(userId);
-                RegisterUser(user);
-                if (user is Client)
-                {
-                    userId++;
-                    Console.WriteLine($"Registered client \n{user as Client}");
-                }
-                else if (user is Miner)
-                {
-                    userId++;
-                    Console.WriteLine($"Registered miner \n{user as Miner}");
-                    List<Miner> miners = [];
-                    foreach(Miner miner in registeredUsers.OfType<Miner>()){
-                        miners.Add(miner);
-                    }
-                    var minersJson = JsonSerializer.Serialize<List<Miner>>(miners);
-                    for(int i = 0; i < miners.Count(); i++){
-                        await _conService.SendMinerList(minersJson);
-                    }
-                }
-                else if (user is null) 
-                {
-                    
-                }
+                await _conService.ReceieveMessage(userId++, registeredUsers);
             }
                 
         }
