@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using CommonInterfaces;
 
@@ -12,22 +14,11 @@ namespace SmartContract
         private IConnectionService _conService = conService;
 
         public async Task ListenForUsers(){
+            Console.WriteLine("Listening...");
             while(true)
             {
-                Console.WriteLine("Listening...");
-                var user = await _conService.ReceieveMessage(userId);
-                if (user is Client)
-                {
-                    userId++;
-                    Console.WriteLine($"Registered client \n{user as Client}");
-                }
-                else if (user is Miner)
-                {
-                    userId++;
-                    Console.WriteLine($"Registered miner \n{user as Miner}");
-                }
+                await _conService.ReceieveMessage(userId++, registeredUsers);
             }
-                
         }
 
         public void RegisterUser(IUser user)

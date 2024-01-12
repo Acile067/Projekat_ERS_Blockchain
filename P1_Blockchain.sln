@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -10,7 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Miner", "Miner\Miner.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonInterfaces", "CommonInterfaces\CommonInterfaces.csproj", "{123761E7-16D7-445A-A331-68AE29324CCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientTest", "ClientTest\ClientTest.csproj", "{5F602ACA-6C51-41E2-A0B8-3BF8A54003EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{F4A5C4C8-6A8A-4114-8791-3335C78E8AB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,10 +34,10 @@ Global
 		{123761E7-16D7-445A-A331-68AE29324CCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{123761E7-16D7-445A-A331-68AE29324CCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{123761E7-16D7-445A-A331-68AE29324CCF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5F602ACA-6C51-41E2-A0B8-3BF8A54003EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F602ACA-6C51-41E2-A0B8-3BF8A54003EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F602ACA-6C51-41E2-A0B8-3BF8A54003EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F602ACA-6C51-41E2-A0B8-3BF8A54003EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4A5C4C8-6A8A-4114-8791-3335C78E8AB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4A5C4C8-6A8A-4114-8791-3335C78E8AB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4A5C4C8-6A8A-4114-8791-3335C78E8AB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4A5C4C8-6A8A-4114-8791-3335C78E8AB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

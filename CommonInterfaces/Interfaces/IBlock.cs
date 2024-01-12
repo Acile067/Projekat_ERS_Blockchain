@@ -2,6 +2,6 @@
 {
     public interface IBlock
     {
-        string CalculateHash();
+        void CalculateHash();
     }
 }
