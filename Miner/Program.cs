@@ -8,11 +8,12 @@ internal class Program
     {
         var miner = new Miner(); 
         var receiver = new MinerReceivingService();
+        var sender = new MinerSendingService();
         await miner.Register();
         Console.WriteLine("Miner registered successfuly!");
         Console.WriteLine(miner);
 
-        var uiHandler = new MinerUiHandler(receiver);
+        var uiHandler = new MinerUiHandler(receiver, sender, miner);
         await uiHandler.HandleUI();
     }
 }
